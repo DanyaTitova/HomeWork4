@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Информация о заказах</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+    }
+    #orders {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 500px;
+    }
+    .order {
+      padding: 14px;
+      border-radius: 6px;
+      background: #3498db;
+      color: white;
+      font-weight: bold;
+      cursor: default;
+      user-select: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+    .order:hover {
+      transform: scale(1.02);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    /* Детали */
+    .order-details {
+      margin-top: 10px;
+      padding: 12px;
+      background: white;
+      color: black;
+      border-radius: 6px;
+      font-size: 14px;
+      line-height: 1.5;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      /* Плавное появление */
+      opacity: 0;
+      height: 0;
+      overflow: hidden;
+      transition: opacity 0.2s ease, height 0.2s ease;
+    }
+
+    /* При ховере — показываем */
+    .order:hover .order-details,
+    .order.show-details .order-details {
+      opacity: 1;
+      height: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Информация о заказах</h1>
+  <div id="orders">
+    <div class="order" data-id="1" data-client="Иван Иванов" data-items="Бургер, Картошка фри" data-total="420 ₽" data-address="ул. Пушкина, д. 10" data-status="new">
+      Заказ #1 — Новый
+    </div>
+    <div class="order" data-id="2" data-client="Мария Смирнова" data-items="Салат Цезарь, Суп" data-total="380 ₽" data-address="ул. Ленина, д. 5" data-status="cooking">
+      Заказ #2 — Готовится
+    </div>
+  </div>
+<!--для тестирования функции js-->
+<script src="task.js"></script>
+<script>
+    const container = document.getElementById('orders');
+    setupOrderHandlers(container);
+</script>
+</body>
+</html>
