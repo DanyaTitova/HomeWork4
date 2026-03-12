@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Поиск и фильтрация заказов</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f4f4f4;
+    }
+
+    .search-container {
+      position: relative;
+      max-width: 400px;
+      margin-bottom: 20px;
+    }
+
+    #order-search {
+      width: 100%;
+      padding: 8px 30px 8px 10px;
+      font-size: 16px;
+    }
+
+    .search-clear {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      font-size: 16px;
+      display: none;
+    }
+
+    .filters {
+      margin-bottom: 20px;
+    }
+
+    .order {
+      position: relative;
+      padding: 14px;
+      border-radius: 6px;
+      color: white;
+      font-weight: bold;
+      margin: 6px 0;
+      transition: opacity 0.2s;
+      user-select: none;
+    }
+
+    .order:hover { opacity: 0.95; }
+
+    .new { background: #3498db; }
+    .cooking { background: #f39c12; }
+    .delivery { background: #9b59b6; }
+    .delivered { background: #2ecc71; }
+
+    .order-title, .order-client {
+      margin: 4px 0;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Поиск и фильтрация заказов</h2>
+
+  <div class="search-container">
+    <input type="text" id="order-search" placeholder="Поиск по ID, заголовку или клиенту" />
+    <span class="search-clear">✕</span>
+  </div>
+
+  <div class="filters">
+    <label><input type="checkbox" class="filter-ready" checked /> Готовые</label>
+    <label><input type="checkbox" class="filter-new" checked /> Новые</label>
+  </div>
+
+  <div id="orders">
+    <div class="order new" data-id="1" data-status="new">
+      <div class="order-title">Заказ #A-101</div>
+      <div class="order-client">Иван Иванов</div>
+    </div>
+
+    <div class="order cooking" data-id="2" data-status="cooking">
+      <div class="order-title">Заказ #A-102</div>
+      <div class="order-client">Мария Смирнова</div>
+    </div>
+  </div>
+<!--для тестирования функции js-->
+<script src="task.js"></script>
+<script>
+  const searchInput = document.getElementById('order-search');
+  const searchClear = document.querySelector('.search-clear');
+  const filterReady = document.querySelector('.filter-ready');
+  const filterNew = document.querySelector('.filter-new');
+  const container = document.getElementById('orders');
+  
+  setupOrderSearchHandler(searchInput, searchClear, filterReady, filterNew, container);
+</script>
+</body>
+</html>
